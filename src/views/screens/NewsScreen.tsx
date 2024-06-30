@@ -7,6 +7,7 @@ import {
   TextInput,
   View,
 } from 'react-native';
+import NewsCard from '../organisms/NewsCard';
 
 const DUMMY_NEWS = [
   {
@@ -62,7 +63,7 @@ const DUMMY_NEWS = [
 
 const NewsScreen = () => {
   const renderItem: FlatListProps<News>['renderItem'] = ({item}) => {
-      return <Text>{item.title}</Text>;
+    return <NewsCard data={item} />;
   };
 
   return (
