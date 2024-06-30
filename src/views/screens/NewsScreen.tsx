@@ -3,11 +3,11 @@ import {
   FlatList,
   FlatListProps,
   StyleSheet,
-  Text,
   TextInput,
   View,
 } from 'react-native';
 import NewsCard from '../organisms/NewsCard';
+import NewsListSeparator from '../atoms/NewsListSeparator';
 
 const DUMMY_NEWS = [
   {
@@ -72,7 +72,11 @@ const NewsScreen = () => {
         <TextInput placeholder={'Search news..'} style={styles.input} />
         <Button title={'Search'} />
       </View>
-      <FlatList data={DUMMY_NEWS} renderItem={renderItem} />
+      <FlatList
+        data={DUMMY_NEWS}
+        renderItem={renderItem}
+        ItemSeparatorComponent={NewsListSeparator}
+      />
     </View>
   );
 };
