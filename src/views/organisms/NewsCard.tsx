@@ -6,20 +6,22 @@ interface NewsCardProps {
 
 const NewsCard = (props: NewsCardProps) => {
   const {data} = props;
-  const {author, title, content, publishedAt, urlToImage} = data;
+  const {author, title, description, publishedAt, urlToImage} = data;
 
   return (
     <View style={styles.container}>
-      <Image
-        source={{uri: urlToImage}}
-        style={styles.image}
-        resizeMode={'cover'}
-      />
+      {urlToImage && (
+        <Image
+          source={{uri: urlToImage}}
+          style={styles.image}
+          resizeMode={'cover'}
+        />
+      )}
       <Text style={styles.title}>{title}</Text>
-      <Text>{content}</Text>
+      <Text>{description}</Text>
       <View style={styles.footerContainer}>
         <Text style={styles.footer}>Author: {author}</Text>
-        <Text style={styles.footer}>{publishedAt}</Text>
+        <Text style={styles.footer}>Published at: {publishedAt}</Text>
       </View>
     </View>
   );
