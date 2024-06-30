@@ -8,6 +8,7 @@ import {
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import NewsScreen from './src/views/screens/NewsScreen';
+import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 
 function App(): React.JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
@@ -16,14 +17,18 @@ function App(): React.JSX.Element {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
+  const queryClient = new QueryClient();
+
   return (
-    <SafeAreaView style={styles.container}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <NewsScreen />
-    </SafeAreaView>
+    <QueryClientProvider client={queryClient}>
+      <SafeAreaView style={styles.container}>
+        <StatusBar
+          barStyle={isDarkMode ? 'light-content' : 'dark-content'}
+          backgroundColor={backgroundStyle.backgroundColor}
+        />
+        <NewsScreen />
+      </SafeAreaView>
+    </QueryClientProvider>
   );
 }
 

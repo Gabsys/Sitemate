@@ -13,3 +13,9 @@ interface NewsSource {
   id: string | null;
   name: string;
 }
+
+interface NewsApiResponse {
+  status: string;
+  totalResults: number;
+  articles: News[];
+}
