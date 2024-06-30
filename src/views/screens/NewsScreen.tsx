@@ -76,6 +76,7 @@ const NewsScreen = () => {
         data={DUMMY_NEWS}
         renderItem={renderItem}
         ItemSeparatorComponent={NewsListSeparator}
+        showsVerticalScrollIndicator={false}
       />
     </View>
   );
@@ -84,10 +85,12 @@ const NewsScreen = () => {
 const styles = StyleSheet.create({
   container: {
     padding: 16,
+    flex: 1,
   },
   searchContainer: {
     flexDirection: 'row',
     alignItems: 'center',
+    marginBottom: 24,
   },
   input: {
     borderRadius: 4,
