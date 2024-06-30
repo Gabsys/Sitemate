@@ -10,11 +10,13 @@ const NewsCard = (props: NewsCardProps) => {
 
   return (
     <View style={styles.container}>
-      <Image
-        source={{uri: urlToImage}}
-        style={styles.image}
-        resizeMode={'cover'}
-      />
+      {urlToImage && (
+        <Image
+          source={{uri: urlToImage}}
+          style={styles.image}
+          resizeMode={'cover'}
+        />
+      )}
       <Text style={styles.title}>{title}</Text>
       <Text>{content}</Text>
       <View style={styles.footerContainer}>
