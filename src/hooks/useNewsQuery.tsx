@@ -3,15 +3,14 @@ import NewsApi from '../api';
 
 const NEWS_QUERY_KEY = 'news';
 
-const useNewsQuery = () => {
+const useNewsQuery = (searchValue: string) => {
   const queryResult = useQuery<NewsApiResponse>({
-    queryKey: [NEWS_QUERY_KEY],
-    queryFn: NewsApi.getNews,
+    queryKey: [NEWS_QUERY_KEY, searchValue],
+    queryFn: () => NewsApi.getNews(searchValue),
+    enabled: false,
   });
 
-  return {
-    news: queryResult.data?.articles ?? [],
-  };
+  return queryResult;
 };
 
 export default useNewsQuery;

@@ -9,22 +9,33 @@ import {
 import NewsCard from '../organisms/NewsCard';
 import NewsListSeparator from '../atoms/NewsListSeparator';
 import useNewsQuery from '../../hooks/useNewsQuery';
+import {useState} from 'react';
 
 const NewsScreen = () => {
-  const {news} = useNewsQuery();
+  const [searchValue, setSearchValue] = useState('');
+  const {data: news, refetch} = useNewsQuery(searchValue);
 
   const renderItem: FlatListProps<News>['renderItem'] = ({item}) => {
     return <NewsCard data={item} />;
   };
 
+  const onPress = () => {
+    refetch();
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.searchContainer}>
-        <TextInput placeholder={'Search news..'} style={styles.input} />
-        <Button title={'Search'} />
+        <TextInput
+          placeholder={'Search news..'}
+          style={styles.input}
+          value={searchValue}
+          onChangeText={setSearchValue}
+        />
+        <Button title={'Search'} onPress={onPress} />
       </View>
       <FlatList
-        data={news}
+        data={news?.articles}
         renderItem={renderItem}
         ItemSeparatorComponent={NewsListSeparator}
         showsVerticalScrollIndicator={false}
